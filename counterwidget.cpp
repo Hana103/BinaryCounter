@@ -29,10 +29,9 @@ CounterWidget::~CounterWidget()
 // Zaehlerstand im Widget und dual ueber LEDs anzeigen:
 void CounterWidget::updateCounter()
 {
- int n=0;
+    int n=0;
     for (auto pin : BUTTONS)
     {
-
 
         int state = !m_gpio->get(pin);
 
@@ -67,6 +66,7 @@ void CounterWidget::updateCounter()
         }
         n++;
 
+        m_gpio->set(m_count);
 
     }
 }
