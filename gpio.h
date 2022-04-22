@@ -13,6 +13,8 @@ public:
     bool get(int pin);
     bool isActivated(int pin);
     bool edgeDetect(int state, bool edge, int nr);
+    void set(unsigned int pattern);
+
 
 public slots:
 

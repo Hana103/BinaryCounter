@@ -61,6 +61,20 @@ bool Gpio::isActivated(int pin)
     m_oldstates[index] = !result;
     return rising;
 }
+void Gpio::set(unsigned int pattern)
+{
+    int n = 0;
+    int value = 0;
+    for (auto pin: LEDS)
+    {
+        value=(pattern>>n)&1;
+       // n-te Stelle vom pattern ausmaskieren, value =
+       lgGpioWrite(m_handle, pin, value);
+
+       // Maske um 1 Stelle nach vorne verschieben
+        n++;
+    }
+}
 
 bool Gpio::edgeDetect(int state, bool edge, int nr)
 {
