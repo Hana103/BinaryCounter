@@ -12,8 +12,7 @@ public:
     void set(int pin, bool value);
     bool get(int pin);
     bool isActivated(int pin);
-
-signals:
+    bool edgeDetect(int state, bool edge, int nr);
 
 public slots:
 

@@ -55,9 +55,32 @@ bool Gpio::isActivated(int pin)
     // rising slope detection
     bool rising = false;
     int index = BUTTONS.indexOf(pin);
-    if (!result > m_oldstates[index]) // !result weil gedrueckt = LO
+    if (!result > m_oldstates[index]) // !result weil gedrueckt = LOW
         rising = true;
 
     m_oldstates[index] = !result;
     return rising;
+}
+
+bool Gpio::edgeDetect(int state, bool edge, int nr)
+{
+
+
+    if(m_oldstates[nr] == state)
+    {
+        if(state == edge)
+        {
+           m_oldstates[nr]= !state;
+           return true;
+        }
+        m_oldstates[nr]= !state;
+        return false;
+    }
+    else
+    {
+        m_oldstates[nr]= !state;
+        return false;
+    }
+
+
 }
